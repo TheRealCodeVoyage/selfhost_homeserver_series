@@ -1,0 +1,31 @@
+{
+  "settings": [
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "cloudflare_zone_identifier",
+      "domain": "domain.com",
+      "ttl": 60,
+      "token": "cloudflare_global_api_token",
+      "ip_version": "ipv4",
+      "ipv6_suffix": ""
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "cloudflare_zone_identifier",
+      "domain": "wg.domain.com",
+      "ttl": 60,
+      "token": "cloudflare_global_api_token",
+      "ip_version": "ipv4",
+      "ipv6_suffix": ""
+    },
+    {
+      "provider": "cloudflare",
+      "zone_identifier": "cloudflare_zone_identifier",
+      "domain": "nginx.domain.com",
+      "ttl": 60,
+      "token": "cloudflare_global_api_token",
+      "ip_version": "ipv4",
+      "ipv6_suffix": ""
+    }
+  ]
+}

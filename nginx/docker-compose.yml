@@ -1,0 +1,20 @@
+---
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    networks:
+      - frontend
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.nginx-http.rule=Host(`nginx.yourdomain.com`)
+      - traefik.http.routers.nginx-http.entrypoints=web
+      - traefik.http.routers.nginx-https.tls=true
+      - traefik.http.routers.nginx-https.tls.certresolver=cloudflare
+      - traefik.http.routers.nginx-https.entrypoints=websecure
+      - traefik.http.routers.nginx-https.rule=Host(`nginx.yourdomain.com`)
+    restart: unless-stopped
+
+networks:
+  frontend:
+    external: true

@@ -1,0 +1,38 @@
+---
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+log:
+  level: ERROR
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  web:
+    address: :80
+  websecure:
+    address: :443
+
+# -- Configure your CertificateResolver here...
+certificatesResolvers:
+  cloudflare:
+    acme:
+      email: info@yourdomain.com  # <-- Change this to your email
+      storage: /var/traefik/certs/cloudflare-acme.json
+      caServer: "https://acme-v02.api.letsencrypt.org/directory"
+      keyType: EC256
+      dnsChallenge:
+        provider: cloudflare  # <-- (Optional) Change this to your DNS provider
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
+
+providers:
+  docker:
+    endpoint: unix:///var/run/docker.sock
+    exposedByDefault: false  # <-- (Optional) Change this to true if you want to expose all services
+    network: frontend
+  file:
+    directory: /etc/traefik
+    watch: true

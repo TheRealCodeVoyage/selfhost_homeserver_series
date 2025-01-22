@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  ddns-updater:
+    image: qmcgaw/ddns-updater:latest
+    container_name: ddns-updater
+    # We do not publish any ports here because Traefik will proxy the traffic.
+    volumes:
+      - ./data:/updater/data
+    networks:
+      - frontend
+    restart: unless-stopped
+
+    labels:
+      # Enable Traefik for this container
+      - "traefik.enable=true"
+      - "traefik.http.routers.ddns-updater-http.rule=Host(`ddns.localhost`)"
+      - "traefik.http.routers.ddns-updater-http.entrypoints=web"
+      - "traefik.http.services.ddns-updater.loadbalancer.server.port=8000"
+
+networks:
+  frontend:
+    external: true
