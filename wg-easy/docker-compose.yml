@@ -29,13 +29,13 @@ services:
     labels:
       - "traefik.enable=true"
       # HTTP router (optional if you want HTTP → HTTPS redirect)
-      - "traefik.http.routers.wg-easy-http.rule=Host(`wg.c0d3v0y463.com`)"
+      - "traefik.http.routers.wg-easy-http.rule=Host(`wg.yourdomain.com`)"
       - "traefik.http.routers.wg-easy-http.entrypoints=web"
       - "traefik.http.middlewares.wg-easy-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.wg-easy-http.middlewares=wg-easy-redirect"
 
       # HTTPS router
-      - "traefik.http.routers.wg-easy-https.rule=Host(`wg.c0d3v0y463.com`)"
+      - "traefik.http.routers.wg-easy-https.rule=Host(`wg.yourdomain.com`)"
       - "traefik.http.routers.wg-easy-https.entrypoints=websecure"
       - "traefik.http.routers.wg-easy-https.tls=true"
       - "traefik.http.routers.wg-easy-https.tls.certresolver=cloudflare"  # or your cert resolver name
